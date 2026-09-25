@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98.4%;
+    --foreground: 240 6% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 8%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 44%;
+    --accent: 26 100% 96%;
+    --accent-foreground: 24 80% 34%;
+    --border: 240 6% 90%;
+    --input: 240 6% 88%;
+    --ring: 24 95% 53%;
+    --success: 152 62% 34%;
+    --danger: 0 72% 48%;
+    --warn: 40 96% 52%;
+    --brand: 24 95% 53%;
+    --brand-soft: 26 100% 95%;
+    --radius: 0.75rem;
+  }
+  .dark {
+    --background: 240 8% 5.5%;
+    --foreground: 0 0% 96%;
+    --card: 240 6% 8.5%;
+    --card-foreground: 0 0% 96%;
+    --primary: 24 94% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 13%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 240 5% 13%;
+    --muted-foreground: 240 5% 62%;
+    --accent: 24 40% 14%;
+    --accent-foreground: 27 96% 72%;
+    --border: 240 5% 16%;
+    --input: 240 5% 18%;
+    --ring: 24 94% 55%;
+    --success: 152 55% 40%;
+    --danger: 0 68% 54%;
+    --warn: 40 92% 54%;
+    --brand: 24 94% 55%;
+    --brand-soft: 24 45% 15%;
+  }
+  * { @apply border-border; }
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+  ::-webkit-scrollbar { width: 9px; height: 9px; }
+  ::-webkit-scrollbar-thumb { @apply bg-muted-foreground/30 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground/50; }
+  ::-webkit-scrollbar-track { background: transparent; }
+}
+
+@layer components {
+  .card { @apply bg-card text-card-foreground rounded-xl border border-border/70 shadow-card; }
+  .btn { @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 disabled:pointer-events-none disabled:opacity-50 select-none active:scale-[.98]; }
+  .btn-md { @apply h-9 px-4; }
+  .btn-sm { @apply h-8 px-3 text-[13px]; }
+  .btn-lg { @apply h-11 px-6 text-[15px]; }
+  .btn-icon { @apply h-9 w-9 p-0; }
+  .btn-primary { @apply btn bg-primary text-primary-foreground shadow-sm hover:bg-primary/90; }
+  .btn-outline { @apply btn border border-input bg-card hover:bg-muted; }
+  .btn-ghost { @apply btn hover:bg-muted; }
+  .btn-danger { @apply btn bg-danger text-white hover:bg-danger/90; }
+  .btn-success { @apply btn bg-success text-white hover:bg-success/90; }
+  .input { @apply flex h-9 w-full rounded-lg border border-input bg-card px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:opacity-50; }
+  .label { @apply text-[13px] font-medium text-foreground/80; }
+  .badge { @apply inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold transition-colors; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold; }
+  .th { @apply h-10 px-3 text-left align-middle text-[11px] font-semibold uppercase tracking-wide text-muted-foreground; }
+  .td { @apply px-3 py-2.5 align-middle text-sm; }
+  .tr { @apply border-t border-border/70 transition-colors hover:bg-muted/50; }
+  .skeleton { @apply relative overflow-hidden rounded-lg bg-muted; background-image: linear-gradient(90deg, transparent, rgb(0 0 0 / 0.04), transparent); background-size: 200% 100%; animation: shimmer 1.6s infinite; }
+  .link { @apply text-primary underline-offset-4 hover:underline cursor-pointer; }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+}
+
+@media print {
+  body * { visibility: hidden; }
+  #print-root, #print-root * { visibility: visible; }
+  #print-root { position: absolute; inset: 0; padding: 24px; background: white; color: black; }
+}
