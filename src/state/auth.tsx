@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { db, type User } from '@/db/database';
 import { ensureSeeded } from '@/db/seed';
 import { makeJwt, readJwt } from '@/utils/format';
@@ -21,7 +21,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   // restore session from simulated JWT (after seeding local database)
-  useState(() => {
+  useEffect(() => {
+    let cancelled = false;
     (async () => {
       try {
         await ensureSeeded();
@@ -30,14 +31,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           const payload = readJwt(token);
           if (payload?.email) {
             const u = await db.users.where('email').equals(payload.email as string).first();
-            if (u) setUser(u);
+            if (u && !cancelled) setUser(u);
           }
         }
       } catch {}
-      setReady(true);
+      if (!cancelled) setReady(true);
     })();
-    return null;
-  });
+    return () => { cancelled = true; };
+  }, []);
 
   const login: AuthCtx['login'] = async (email, password) => {
     const e = email.trim().toLowerCase();
