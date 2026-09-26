@@ -40,8 +40,8 @@ function HeroVisual() {
       <span className="absolute -right-6 -top-6 -z-10 h-24 w-24 rounded-full bg-amber-300/50 blur-[2px]" aria-hidden />
       <div className="overflow-hidden rounded-[2.25rem] shadow-[0_35px_80px_-30px_rgba(13,60,35,0.45)] ring-1 ring-black/5">
         <img
-          src="./images/hero-phone.jpg"
-          alt="EcoleCRM sur smartphone : élèves, recouvrement et paiements Mobile Money"
+          src="./images/hero-school.jpg"
+          alt="Directrice d'école souriante montrant l'application EcoleCRM sur son smartphone, dans la cour d'une école"
           draggable={false}
           loading="eager"
           className="w-full select-none"
