@@ -11,75 +11,19 @@ import { fmtNumber } from '@/utils/format';
 
 const GRA = 'bg-gradient-to-br from-primary/90 to-orange-600';
 
-/* ============================ Phone mockup (pure CSS) ============================ */
-function PhoneMock() {
-  const bars = [42, 65, 38, 78, 55, 90, 62];
+/* ============================ Hero visual (photo) ============================ */
+function HeroVisual() {
   return (
-    <div className="relative mx-auto w-[240px] sm:w-[270px]">
-      {/* main phone */}
-      <div className="rounded-[2.4rem] border-[7px] border-zinc-800 bg-zinc-900 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
-        <div className="relative overflow-hidden rounded-[1.9rem] bg-white dark:bg-zinc-950">
-          {/* notch */}
-          <div className="mx-auto mt-1.5 h-4 w-20 rounded-full bg-zinc-800" />
-          {/* app header */}
-          <div className="flex items-center justify-between px-4 pt-3">
-            <div className="flex items-center gap-1.5">
-              <span className={`grid h-6 w-6 place-items-center rounded-lg ${GRA} text-[11px] font-black text-white`}>E</span>
-              <span className="text-[11px] font-bold text-zinc-900 dark:text-white">EcoleCRM</span>
-            </div>
-            <span className="h-4 w-4 rounded-full bg-zinc-200 dark:bg-zinc-800" />
-          </div>
-          {/* KPIs */}
-          <div className="grid grid-cols-2 gap-2 px-4 pt-3">
-            <div className="rounded-xl bg-orange-50 p-2.5 dark:bg-orange-500/10">
-              <p className="text-[8px] font-semibold uppercase text-orange-600/80">Élèves</p>
-              <p className="text-sm font-extrabold text-zinc-900 dark:text-white">1 240</p>
-              <p className="text-[8px] font-semibold text-emerald-600">+8,2%</p>
-            </div>
-            <div className="rounded-xl bg-zinc-50 p-2.5 dark:bg-zinc-900">
-              <p className="text-[8px] font-semibold uppercase text-zinc-500">Recouvré</p>
-              <p className="text-sm font-extrabold text-zinc-900 dark:text-white">87%</p>
-              <div className="mt-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800">
-                <div className="h-1 w-[87%] rounded-full bg-emerald-500" />
-              </div>
-            </div>
-          </div>
-          {/* chart */}
-          <div className="mx-4 mt-2 rounded-xl bg-zinc-50 p-3 dark:bg-zinc-900">
-            <div className="mb-2 flex items-center justify-between">
-              <p className="text-[8px] font-bold uppercase text-zinc-500">Recettes · FCFA</p>
-              <span className="rounded-full bg-emerald-100 px-1.5 text-[8px] font-bold text-emerald-700 dark:bg-emerald-500/15">+12%</span>
-            </div>
-            <div className="flex h-16 items-end gap-1.5">
-              {bars.map((h, i) => (
-                <div key={i} className={`flex-1 rounded-t-sm ${i === 5 ? 'bg-orange-500' : 'bg-zinc-300 dark:bg-zinc-700'}`} style={{ height: `${h}%` }} />
-              ))}
-            </div>
-          </div>
-          {/* list */}
-          <div className="mx-4 mb-4 mt-2 space-y-1.5">
-            {[
-              ['Aminata D.', 'Wave', '15 000'],
-              ['Ibrahima K.', 'Orange Money', '25 000'],
-            ].map(([n, m, a]) => (
-              <div key={n} className="flex items-center gap-2 rounded-xl border border-zinc-100 p-2 dark:border-zinc-800">
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-orange-100 text-[9px] font-bold text-orange-600">{n[0]}</span>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-[9px] font-bold text-zinc-900 dark:text-white">{n}</p>
-                  <p className="text-[8px] text-zinc-500">{m}</p>
-                </div>
-                <p className="text-[9px] font-extrabold text-emerald-600">{a}</p>
-              </div>
-            ))}
-            <div className={`flex items-center justify-center gap-1 rounded-xl ${GRA} py-2 text-[9px] font-bold text-white`}>
-              <Receipt className="h-3 w-3" /> Encaisser un paiement
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div className="relative mx-auto w-full max-w-[680px]">
+      <img
+        src="./images/hero-phone.jpg"
+        alt="EcoleCRM sur smartphone : élèves, recouvrement et paiements Mobile Money"
+        draggable={false}
+        loading="eager"
+        className="w-full select-none rounded-[2.5rem] [mask-image:radial-gradient(115%_115%_at_52%_45%,black_52%,transparent_76%)]"
+      />
       {/* floating notifications */}
-      <div className="absolute -left-16 top-40 hidden animate-fade-up rounded-2xl border border-border/60 bg-card p-3 shadow-pop lg:block" style={{ animationDelay: '.2s' }}>
+      <div className="absolute -left-2 top-[20%] hidden animate-fade-up rounded-2xl border border-border/60 bg-card p-3 shadow-pop sm:block" style={{ animationDelay: '.25s' }}>
         <div className="flex items-center gap-2">
           <span className="grid h-8 w-8 place-items-center rounded-full bg-emerald-500/15 text-emerald-600"><Bell className="h-4 w-4" /></span>
           <div>
@@ -88,7 +32,7 @@ function PhoneMock() {
           </div>
         </div>
       </div>
-      <div className="absolute -right-14 bottom-40 hidden animate-fade-up rounded-2xl border border-border/60 bg-card p-3 shadow-pop lg:block" style={{ animationDelay: '.4s' }}>
+      <div className="absolute -left-2 bottom-[14%] hidden animate-fade-up rounded-2xl border border-border/60 bg-card p-3 shadow-pop sm:block" style={{ animationDelay: '.45s' }}>
         <div className="flex items-center gap-2">
           <span className="grid h-8 w-8 place-items-center rounded-full bg-orange-500/15 text-primary"><WifiOff className="h-4 w-4" /></span>
           <div>
@@ -364,7 +308,7 @@ export default function Landing() {
           </div>
 
           <div className="animate-fade-up" style={{ animationDelay: '.15s' }}>
-            <PhoneMock />
+            <HeroVisual />
           </div>
         </div>
 
