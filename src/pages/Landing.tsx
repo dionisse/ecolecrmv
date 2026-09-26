@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Users, GraduationCap, Wallet, WifiOff, Bell, BarChart3, ShieldCheck, Languages,
-  School, BookOpen, Library, CheckCircle2, ChevronDown, Globe, Moon, Sun, Menu, X,
+  School, BookOpen, Library, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Globe, Moon, Sun, Menu, X,
   Smartphone, Receipt, ArrowRight, Star, Quote,
 } from 'lucide-react';
 import { useI18n } from '@/i18n/I18nContext';
@@ -136,6 +136,104 @@ function useLandingData() {
       { name: 'M. Issouf Ouédraogo', role: 'Censeur — Ouagadougou, Burkina', text: 'Bulletins générés en un clic pour 38 classes. Le conseil de discipline suit chaque cas. Un outil pensé pour nos réalités.', color: '#8b5cf6' },
     ],
   };
+}
+
+/* ============================ Modules carousel ============================ */
+const MODULE_SLIDES = [
+  { img: './images/carousel-primary.jpg', tag: 'module.primary', title: 'm.primary.t', desc: 'm.primary.d', color: '#f97316' },
+  { img: './images/carousel-secondary.jpg', tag: 'module.secondary', title: 'm.secondary.t', desc: 'm.secondary.d', color: '#0ea5e9' },
+  { img: './images/carousel-university.jpg', tag: 'module.university', title: 'm.university.t', desc: 'm.university.d', color: '#8b5cf6' },
+];
+
+function ModuleCarousel() {
+  const { t } = useI18n();
+  const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const touchX = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => setIdx((i) => (i + 1) % MODULE_SLIDES.length), 5500);
+    return () => clearInterval(id);
+  }, [paused]);
+
+  const go = (d: number) => setIdx((i) => (i + d + MODULE_SLIDES.length) % MODULE_SLIDES.length);
+
+  return (
+    <div
+      className="group relative overflow-hidden rounded-3xl border border-border/60 shadow-pop"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={(e) => { touchX.current = e.touches[0].clientX; setPaused(true); }}
+      onTouchEnd={(e) => {
+        if (touchX.current !== null) {
+          const dx = e.changedTouches[0].clientX - touchX.current;
+          if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+        }
+        touchX.current = null;
+        setPaused(false);
+      }}
+      role="region"
+      aria-roledescription="carrousel"
+      aria-label={t('modules.title')}
+    >
+      {/* track */}
+      <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${idx * 100}%)` }}>
+        {MODULE_SLIDES.map((s, i) => (
+          <div key={s.img} className="relative h-[280px] w-full shrink-0 sm:h-[380px] lg:h-[460px]" aria-hidden={i !== idx}>
+            <img
+              src={s.img}
+              alt={t(s.title)}
+              draggable={false}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              className="h-full w-full select-none object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-8 lg:p-10">
+              <span className="chip text-white shadow-sm" style={{ background: s.color }}>
+                {t(s.tag)}
+              </span>
+              <h3 className="mt-2.5 text-2xl font-extrabold tracking-tight drop-shadow sm:text-3xl lg:text-4xl">
+                {t(s.title)}
+              </h3>
+              <p className="mt-1.5 max-w-2xl text-[13px] leading-relaxed text-white/85 line-clamp-2 sm:text-[15px] sm:line-clamp-none">
+                {t(s.desc)}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* arrows (hidden on small screens — swipe works) */}
+      <button
+        onClick={() => go(-1)}
+        aria-label="Précédent"
+        className="absolute left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-black/35 text-white opacity-100 backdrop-blur transition hover:bg-black/60 group-hover:opacity-100 sm:left-4 sm:grid sm:h-11 sm:w-11 lg:opacity-0"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+      <button
+        onClick={() => go(1)}
+        aria-label="Suivant"
+        className="absolute right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-black/35 text-white opacity-100 backdrop-blur transition hover:bg-black/60 group-hover:opacity-100 sm:right-4 sm:grid sm:h-11 sm:w-11 lg:opacity-0"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
+
+      {/* dots */}
+      <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-black/35 px-2.5 py-1.5 backdrop-blur sm:right-6 sm:top-6">
+        {MODULE_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIdx(i)}
+            aria-label={`Diapositive ${i + 1}`}
+            aria-current={i === idx}
+            className={`h-1.5 rounded-full transition-all duration-300 ${i === idx ? 'w-6 bg-white' : 'w-2 bg-white/50 hover:bg-white/80'}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 /* ============================ Landing ============================ */
@@ -318,6 +416,12 @@ export default function Landing() {
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">{t('modules.title')}</h2>
             <p className="mt-3 text-[15px] text-muted-foreground">{t('modules.desc')}</p>
           </div>
+
+          {/* Carousel: primaire / secondaire / universitaire */}
+          <div className="mt-10">
+            <ModuleCarousel />
+          </div>
+
           <div id="pricing" className="mt-12 grid gap-5 lg:grid-cols-3">
             {d.modules.map((m, i) => (
               <div key={i} className={`card relative flex flex-col p-6 ${m.featured ? 'ring-2 ring-primary shadow-pop lg:-my-3' : ''}`}>
