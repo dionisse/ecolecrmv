@@ -16,8 +16,8 @@ import { fmtMoney, fmtCompact, pct, monthLabel, fmtNumber } from '@/utils/format
 import { StatCard, Avatar, Chip, Progress, PageHeader } from '@/components/ui';
 import * as Q from '@/db/queries';
 
-const GRA = 'bg-gradient-to-br from-primary to-orange-600';
-const MODULE_COLORS = { primary: '#f97316', secondary: '#0ea5e9', university: '#8b5cf6' };
+const GRA = 'bg-gradient-to-br from-primary to-emerald-600';
+const MODULE_COLORS = { primary: '#1ea75f', secondary: '#24446b', university: '#f2a90f' };
 
 export default function Dashboard() {
   const { t, lang } = useI18n();
@@ -60,7 +60,7 @@ export default function Dashboard() {
   }, [history, t, students]);
 
   const incidentsPie = useMemo(() => {
-    const colors = ['#f97316', '#0ea5e9', '#8b5cf6', '#e11d48', '#10b981', '#eab308', '#64748b'];
+    const colors = ['#1ea75f', '#24446b', '#f2a90f', '#0d9488', '#ef4444', '#eab308', '#64748b'];
     return Q.incidentsByType(incidents).slice(0, 7).map((x, i) => ({ name: t(`disc.type.${x.type}`), value: x.count, color: colors[i] }));
   }, [incidents, t]);
 
@@ -135,7 +135,7 @@ export default function Dashboard() {
                   />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
                   <Bar dataKey="recettes" name={t('finance.collected')} fill="#10b981" radius={[6, 6, 0, 0]} maxBarSize={26} />
-                  <Bar dataKey="dépenses" name={t('finance.spent')} fill="#f97316" radius={[6, 6, 0, 0]} maxBarSize={26} />
+                  <Bar dataKey="dépenses" name={t('finance.spent')} fill="#f2a90f" radius={[6, 6, 0, 0]} maxBarSize={26} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -170,14 +170,14 @@ export default function Dashboard() {
                 <AreaChart data={enrollment}>
                   <defs>
                     <linearGradient id="gP" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#f97316" stopOpacity={0.35} />
-                      <stop offset="100%" stopColor="#f97316" stopOpacity={0} />
+                      <stop offset="0%" stopColor="#1ea75f" stopOpacity={0.35} />
+                      <stop offset="100%" stopColor="#1ea75f" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <XAxis dataKey="year" tick={{ fontSize: 10 }} stroke="currentColor" opacity={0.5} tickLine={false} axisLine={false} />
                   <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid rgba(128,128,128,.25)', background: 'var(--card)', fontSize: 12 }} />
-                  <Area type="monotone" dataKey={t('module.secondary')} stroke="#0ea5e9" fill="#0ea5e9" fillOpacity={0.12} strokeWidth={2} />
-                  <Area type="monotone" dataKey={t('module.primary')} stroke="#f97316" fill="url(#gP)" strokeWidth={2} />
+                  <Area type="monotone" dataKey={t('module.secondary')} stroke="#24446b" fill="#24446b" fillOpacity={0.12} strokeWidth={2} />
+                  <Area type="monotone" dataKey={t('module.primary')} stroke="#1ea75f" fill="url(#gP)" strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -209,11 +209,11 @@ export default function Dashboard() {
           <h3 className="mb-2.5 text-[13px] font-bold uppercase tracking-wide text-muted-foreground">{t('dash.quickActions')}</h3>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {[
-              { label: t('dash.newStudent'), icon: Users, to: '/app/students', color: '#f97316' },
+              { label: t('dash.newStudent'), icon: Users, to: '/app/students', color: '#1ea75f' },
               { label: t('dash.newPayment'), icon: Receipt, to: '/app/finance', color: '#10b981' },
               { label: t('dash.newIncident'), icon: ShieldAlert, to: '/app/discipline', color: '#e11d48' },
-              { label: t('dash.sendNotif'), icon: Bell, to: '/app/messages', color: '#8b5cf6' },
-              { label: t('rep.title'), icon: TrendingUp, to: '/app/reports', color: '#0ea5e9' },
+              { label: t('dash.sendNotif'), icon: Bell, to: '/app/messages', color: '#f2a90f' },
+              { label: t('rep.title'), icon: TrendingUp, to: '/app/reports', color: '#24446b' },
             ].map((a) => (
               <Link key={a.label} to={a.to} state={{ new: 1 }} className="card group flex flex-col items-center gap-2.5 p-4 transition-all hover:-translate-y-0.5 hover:shadow-pop">
                 <span className="grid h-10 w-10 place-items-center rounded-xl text-white transition group-hover:scale-105" style={{ background: a.color }}>

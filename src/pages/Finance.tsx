@@ -344,7 +344,7 @@ export default function Finance() {
                   <Tooltip cursor={{ fill: 'currentColor', opacity: 0.05 }} contentStyle={{ borderRadius: 12, border: '1px solid rgba(128,128,128,.25)', background: 'var(--card)', fontSize: 12 }} formatter={(v: any) => fmtMoney(Number(v))} />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
                   <Bar dataKey="recettes" name={t('finance.collected')} fill="#10b981" radius={[6, 6, 0, 0]} maxBarSize={26} />
-                  <Bar dataKey="dépenses" name={t('finance.spent')} fill="#f97316" radius={[6, 6, 0, 0]} maxBarSize={26} />
+                  <Bar dataKey="dépenses" name={t('finance.spent')} fill="#f2a90f" radius={[6, 6, 0, 0]} maxBarSize={26} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

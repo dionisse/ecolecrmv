@@ -27,8 +27,8 @@ const ROLE_MATRIX: Record<Role, string[]> = {
 };
 
 const ROLE_COLORS: Record<string, string> = {
-  admin: '#f97316', director: '#e11d48', teacher: '#0ea5e9', parent: '#8b5cf6',
-  accountant: '#10b981', secretary: '#d97706', discipline: '#ef4444', censor: '#6366f1', staff: '#64748b',
+  admin: '#1ea75f', director: '#e11d48', teacher: '#24446b', parent: '#f2a90f',
+  accountant: '#0d9488', secretary: '#d97706', discipline: '#ef4444', censor: '#5b6cf5', staff: '#64748b',
 };
 
 const emptyStaff = (): Staff => ({

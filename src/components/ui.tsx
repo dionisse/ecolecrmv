@@ -4,7 +4,7 @@ import { X, ChevronLeft, ChevronRight, Inbox } from 'lucide-react';
 /* ---------- Avatar with initials ---------- */
 export function Avatar({ name, color, size = 36 }: { name: string; color?: string; size?: number }) {
   const initials = name.split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
-  const c = color || '#f97316';
+  const c = color || '#1ea75f';
   return (
     <span
       className="inline-flex shrink-0 select-none items-center justify-center rounded-full font-bold text-white"

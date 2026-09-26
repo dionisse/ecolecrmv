@@ -20,7 +20,7 @@ const emptyStudent = (module: ModuleKind = 'secondary'): Student => ({
   matricule: '', firstName: '', lastName: '', gender: 'M',
   birthDate: '2012-01-01', birthPlace: '', classId: undefined, module,
   guardianName: '', guardianPhone: '', guardianEmail: '', address: '',
-  enrolledAt: nowIso().slice(0, 10), status: 'active', photoColor: '#f97316',
+  enrolledAt: nowIso().slice(0, 10), status: 'active', photoColor: '#1ea75f',
 });
 
 export default function Students() {
@@ -76,7 +76,7 @@ export default function Students() {
       const module = form.module;
       const seq = students.length + 1;
       const mat = `${module === 'primary' ? 'P' : module === 'secondary' ? 'S' : 'U'}${new Date().getFullYear()}-${String(seq).padStart(4, '0')}`;
-      await db.students.add({ ...form, matricule: mat, photoColor: form.photoColor || ['#f97316', '#0ea5e9', '#8b5cf6', '#10b981', '#e11d48'][seq % 5] });
+      await db.students.add({ ...form, matricule: mat, photoColor: form.photoColor || ['#1ea75f', '#24446b', '#f2a90f', '#0d9488', '#e11d48'][seq % 5] });
       toast(t('students.enrolledOk'));
     }
     setForm(null);

@@ -6,13 +6,13 @@ import { useAuth, ROLE_PORTAL } from '@/state/auth';
 import { useToast } from '@/state/toast';
 
 const DEMO = [
-  { email: 'admin@ecole.cm', password: 'admin123', roleKey: 'portal.admin', color: '#f97316' },
-  { email: 'prof@ecole.cm', password: 'prof123', roleKey: 'portal.teacher', color: '#0ea5e9' },
-  { email: 'parent@ecole.cm', password: 'parent123', roleKey: 'portal.parent', color: '#8b5cf6' },
-  { email: 'compta@ecole.cm', password: 'compta123', roleKey: 'portal.accounting', color: '#10b981' },
+  { email: 'admin@ecole.cm', password: 'admin123', roleKey: 'portal.admin', color: '#1ea75f' },
+  { email: 'prof@ecole.cm', password: 'prof123', roleKey: 'portal.teacher', color: '#24446b' },
+  { email: 'parent@ecole.cm', password: 'parent123', roleKey: 'portal.parent', color: '#f2a90f' },
+  { email: 'compta@ecole.cm', password: 'compta123', roleKey: 'portal.accounting', color: '#0d9488' },
   { email: 'secretariat@ecole.cm', password: 'secretaire123', roleKey: 'portal.secretariat', color: '#d97706' },
-  { email: 'discipline@ecole.cm', password: 'discipline123', roleKey: 'portal.discipline', color: '#e11d48' },
-  { email: 'censeur@ecole.cm', password: 'censeur123', roleKey: 'portal.censor', color: '#6366f1' },
+  { email: 'discipline@ecole.cm', password: 'discipline123', roleKey: 'portal.discipline', color: '#ef4444' },
+  { email: 'censeur@ecole.cm', password: 'censeur123', roleKey: 'portal.censor', color: '#5b6cf5' },
 ];
 
 export default function Login() {
@@ -45,23 +45,23 @@ export default function Login() {
   return (
     <div className="grid min-h-dvh lg:grid-cols-[1fr_1.1fr]">
       {/* ------- Left: dark brand panel ------- */}
-      <div className="relative hidden overflow-hidden bg-zinc-950 p-10 text-white lg:flex lg:flex-col">
+      <div className="relative hidden overflow-hidden bg-[#0d241a] p-10 text-white lg:flex lg:flex-col">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-20 -left-20 h-96 w-96 rounded-full bg-primary/25 blur-[120px]" />
           <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-amber-400/10 blur-[100px]" />
           <div className="absolute inset-0 opacity-[0.13]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,.4) 1px, transparent 0)', backgroundSize: '26px 26px' }} />
         </div>
         <Link to="/" className="relative flex items-center gap-2.5">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-primary to-orange-600 text-xl font-black shadow-lg">E</span>
+          <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-primary to-emerald-600 text-xl font-black shadow-lg">E</span>
           <span className="text-xl font-extrabold tracking-tight">Ecole<span className="text-primary">CRM</span></span>
         </Link>
 
         <div className="relative my-auto max-w-md">
           <h1 className="text-3xl font-extrabold leading-tight tracking-tight">
             {t('tagline')} —<br />
-            <span className="bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">Primaire · Secondaire · Universitaire</span>
+            <span className="text-amber-300">Primaire · Secondaire · Universitaire</span>
           </h1>
-          <p className="mt-4 text-[13.5px] leading-relaxed text-zinc-400">
+          <p className="mt-4 text-[13.5px] leading-relaxed text-emerald-100/70">
             {t('hero.desc').slice(0, 150)}…
           </p>
           <ul className="mt-7 space-y-3.5">
@@ -70,8 +70,8 @@ export default function Login() {
               [ShieldCheck, t('f.security.d')],
               [GraduationCap, t('portals.desc')],
             ].map(([Icon, text]: any, i) => (
-              <li key={i} className="flex items-start gap-3 text-[13px] text-zinc-300">
-                <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-white/5 text-orange-400 ring-1 ring-white/10">
+              <li key={i} className="flex items-start gap-3 text-[13px] text-emerald-100/90">
+                <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-white/10 text-amber-300 ring-1 ring-white/10">
                   <Icon className="h-3.5 w-3.5" />
                 </span>
                 {text}
@@ -80,7 +80,7 @@ export default function Login() {
           </ul>
         </div>
 
-        <p className="relative flex items-center gap-2 text-[11.5px] text-zinc-500">
+        <p className="relative flex items-center gap-2 text-[11.5px] text-emerald-100/50">
           <School className="h-3.5 w-3.5" /> {t('footer.made')}
         </p>
       </div>
@@ -89,7 +89,7 @@ export default function Login() {
       <div className="relative flex flex-col bg-background">
         <div className="flex items-center justify-between p-5 sm:p-7">
           <Link to="/" className="flex items-center gap-2 lg:invisible">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-orange-600 text-base font-black text-white">E</span>
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-emerald-600 text-base font-black text-white">E</span>
             <span className="font-extrabold tracking-tight">Ecole<span className="text-primary">CRM</span></span>
           </Link>
           <button onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')} className="btn btn-ghost btn-sm gap-1.5 text-muted-foreground">
@@ -120,7 +120,7 @@ export default function Login() {
 
               <div className="flex items-center justify-between text-[12.5px]">
                 <label className="flex cursor-pointer items-center gap-2 text-muted-foreground">
-                  <input type="checkbox" defaultChecked className="h-3.5 w-3.5 accent-orange-600" />
+                  <input type="checkbox" defaultChecked className="h-3.5 w-3.5 accent-primary" />
                   {t('auth.remember')}
                 </label>
                 <button type="button" className="font-medium text-primary hover:underline">{t('auth.forgot')}</button>
@@ -130,7 +130,7 @@ export default function Login() {
                 <p className="rounded-lg bg-danger/10 px-3 py-2 text-[12.5px] font-medium text-danger">{err}</p>
               )}
 
-              <button type="submit" disabled={busy} className="btn btn-primary btn-lg w-full gap-2 bg-gradient-to-r from-primary to-orange-600">
+              <button type="submit" disabled={busy} className="btn btn-primary btn-lg w-full gap-2 bg-gradient-to-r from-primary to-emerald-600">
                 {busy ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" /> : <ShieldCheck className="h-4 w-4" />}
                 {t('auth.login')}
               </button>

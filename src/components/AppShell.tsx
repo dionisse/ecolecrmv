@@ -13,7 +13,7 @@ import { useTheme, toggleTheme } from '@/utils/theme';
 import { useOnline, useSync, flushQueue } from '@/state/sync';
 import { Avatar } from '@/components/ui';
 
-const GRA = 'bg-gradient-to-br from-primary to-orange-600';
+const GRA = 'bg-gradient-to-br from-primary to-emerald-600';
 
 interface NavItem { to: string; labelKey: string; icon: any }
 

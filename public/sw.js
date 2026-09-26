@@ -1,5 +1,5 @@
 /* EcoleCRM service worker — offline-first app shell */
-const CACHE = 'ecolecrm-v1';
+const CACHE = 'ecolecrm-v2';
 const CORE = ['./', './index.html', './manifest.webmanifest', './favicon.svg'];
 
 self.addEventListener('install', (e) => {

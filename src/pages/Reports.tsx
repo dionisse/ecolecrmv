@@ -14,7 +14,7 @@ import { PageHeader, StatCard, Progress } from '@/components/ui';
 import * as Q from '@/db/queries';
 import { DEFAULT_SCHOOL } from '@/db/seed';
 
-const MODULE_COLORS = { primary: '#f97316', secondary: '#0ea5e9', university: '#8b5cf6' };
+const MODULE_COLORS = { primary: '#1ea75f', secondary: '#24446b', university: '#f2a90f' };
 
 export default function Reports() {
   const { t, lang } = useI18n();
@@ -63,7 +63,7 @@ export default function Reports() {
   }, [payments, expenses, lang]);
 
   const incidentsByType = useMemo(() => {
-    const colors = ['#f97316', '#0ea5e9', '#8b5cf6', '#e11d48', '#10b981', '#eab308', '#64748b'];
+    const colors = ['#1ea75f', '#24446b', '#f2a90f', '#0d9488', '#ef4444', '#eab308', '#64748b'];
     return Q.incidentsByType(incidents).map((x, i) => ({ name: t(`disc.type.${x.type}`), value: x.count, color: colors[i % colors.length] }));
   }, [incidents, t]);
 
@@ -156,7 +156,7 @@ export default function Reports() {
                 <XAxis dataKey="month" tick={{ fontSize: 11 }} stroke="currentColor" opacity={0.5} tickLine={false} axisLine={false} />
                 <YAxis domain={[0, 20]} tick={{ fontSize: 11 }} stroke="currentColor" opacity={0.5} tickLine={false} axisLine={false} width={28} />
                 <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid rgba(128,128,128,.25)', background: 'var(--card)', fontSize: 12 }} />
-                <Line type="monotone" dataKey="moyenne" stroke="#f97316" strokeWidth={2.5} dot={{ r: 3 }} />
+                <Line type="monotone" dataKey="moyenne" stroke="#1ea75f" strokeWidth={2.5} dot={{ r: 3 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -174,7 +174,7 @@ export default function Reports() {
                 <Tooltip cursor={{ fill: 'currentColor', opacity: 0.05 }} contentStyle={{ borderRadius: 12, border: '1px solid rgba(128,128,128,.25)', background: 'var(--card)', fontSize: 12 }} formatter={(v: any) => fmtMoney(Number(v))} />
                 <Legend wrapperStyle={{ fontSize: 11 }} />
                 <Bar dataKey="recettes" name={t('finance.collected')} fill="#10b981" radius={[5, 5, 0, 0]} maxBarSize={22} />
-                <Bar dataKey="dépenses" name={t('finance.spent')} fill="#f97316" radius={[5, 5, 0, 0]} maxBarSize={22} />
+                <Bar dataKey="dépenses" name={t('finance.spent')} fill="#f2a90f" radius={[5, 5, 0, 0]} maxBarSize={22} />
               </BarChart>
             </ResponsiveContainer>
           </div>
